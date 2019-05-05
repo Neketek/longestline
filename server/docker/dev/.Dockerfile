@@ -6,6 +6,7 @@ COPY ./docker/dev/*.sh ./docker/dev/
 COPY ./package*.json ./
 
 RUN sh docker/dev/install.sh
+COPY . .
 
-CMD sh docker/dev/entry.sh docker/dev/cmd.sh
-ENTRYPOINT sh docker/dev/entry.sh
+ENTRYPOINT ["docker/dev/entry.sh"]
+CMD ["docker/dev/cmd.sh"]
