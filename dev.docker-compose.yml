@@ -11,5 +11,22 @@ services:
       - "./server:/server"
     ports:
       - "8080:8080"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
     stdin_open: true
     tty: true
+
+  mongodb:
+    image: longestline:mongodb
+    container_name: longestline-mongodb
+    build:
+      dockerfile: docker/dev/.Dockerfile
+      context: ./mongodb
+    ports:
+      - "27017:27017"
+    stdin_open: true
+    tty: true
+    volumes:
+      - "./mongodb/data:/data"
