@@ -8,5 +8,5 @@ COPY ./package*.json ./
 RUN sh docker/dev/install.sh
 COPY . .
 
-ENTRYPOINT ["docker/dev/entry.sh"]
+ENTRYPOINT ["/bin/sh"]
 CMD ["docker/dev/cmd.sh"]

@@ -1,0 +1,15 @@
+version: "3.2"
+
+services:
+  server:
+    image: longestline:server
+    container_name: longestline-server
+    build:
+      dockerfile: docker/dev/.Dockerfile
+      context: ./server
+    volumes:
+      - "./server:/server"
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
