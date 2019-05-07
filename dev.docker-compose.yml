@@ -18,6 +18,19 @@ services:
     stdin_open: true
     tty: true
 
+  app:
+    image: longestline:app
+    container_name: longestline-app
+    build:
+      dockerfile: docker/dev/.Dockerfile
+      context: ./app
+    volumes:
+      - "./app:/app"
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
   mongodb:
     image: longestline:mongodb
     container_name: longestline-mongodb
