@@ -1,6 +1,6 @@
 FROM node:8.16.0-alpine
 
-WORKDIR server
+WORKDIR app
 
 COPY ./docker/dev/*.sh ./docker/dev/
 COPY ./package*.json ./
@@ -10,7 +10,7 @@ COPY . .
 
 EXPOSE 8080
 
-VOLUME ["/server"]
+VOLUME ["/app"]
 
 ENTRYPOINT ["/bin/sh"]
 CMD ["docker/dev/cmd.sh"]

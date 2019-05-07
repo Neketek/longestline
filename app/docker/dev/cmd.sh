@@ -1,3 +1,3 @@
 rm -rf node_modules
-ln -s /node_modules /server/node_modules
-npm run dev-start
+ln -s /node_modules /app/node_modules
+npm run start

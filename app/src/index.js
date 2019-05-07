@@ -1,4 +1,4 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(<div>Hello da f f</div>, document.getElementById('root'));
+ReactDOM.render(<div>Hello world</div>, document.getElementById('root'));
