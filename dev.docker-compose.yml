@@ -26,7 +26,5 @@ services:
       context: ./mongodb
     ports:
       - "27017:27017"
-    stdin_open: true
-    tty: true
     volumes:
       - "./mongodb/data:/data"

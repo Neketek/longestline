@@ -1,9 +1,19 @@
 const express = require('express');
-const index = require('./modules/routing/index.js');
+const index = require('routing/index.js');
+const mongodb = require("model/mongo/db.js");
 
-const app = express();
-const port = 8080;
+const PORT = 8080;
 
-app.use(index);
+async function createApp(){
 
-app.listen(port, ()=>console.log(`App listening on port ${port}`));
+  const app = express();
+
+  app.use(mongodb);
+
+  app.use(index);
+
+  app.listen(PORT, ()=>console.log(`App listening on port ${PORT}`));
+
+}
+
+createApp();
