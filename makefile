@@ -12,3 +12,12 @@ dev-build:
 .PHONY: dev-stop
 dev-stop:
 	docker-compose -f dev.docker-compose.yml down
+
+
+.PHONY: dev-run-app
+dev-run-app:
+	docker-compose -f dev.docker-compose.yml run --rm --no-deps --entrypoint /bin/sh app
+
+.PHONY: dev-run-server
+dev-run-server:
+	docker-compose -f dev.docker-compose.yml run --rm --no-deps --entrypoint /bin/sh server

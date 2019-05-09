@@ -1,4 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import IndexContainer from 'container/index/index.jsx';
 
-ReactDOM.render(<div>Hello world</div>, document.getElementById('root'));
+ReactDOM.render(<IndexContainer/>, document.getElementById('root'));
