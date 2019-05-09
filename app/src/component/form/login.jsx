@@ -6,15 +6,44 @@ import Rule from 'common/component/form/rule.jsx';
 import Text from 'common/component/input/text.jsx';
 
 
+
+function SubmitButton(){
+
+  const {
+    props:{
+      onSubmit
+    },
+    state:{
+      error,
+      value
+    }
+  } = this;
+
+  if(this.constructor.isValid(error)){
+    return (
+      <button onClick={()=>onSubmit(value)}>Submit</button>
+    );
+  }
+
+  return null;
+}
+
 class Login extends Base{
+
+  constructor(props){
+    super(props);
+    this.SubmitButton=props.onSubmit?SubmitButton.bind(this):()=>null;
+  }
+
   form(){
     const {
       Field,
       Errors,
+      SubmitButton
     } = this;
 
     return (
-      <form>
+      <div>
         <label>Login</label>
         <Field>
           <Text name="email"/>
@@ -23,7 +52,8 @@ class Login extends Base{
         <Field>
           <Text name="password" type="password"/>
         </Field>
-      </form>
+        <SubmitButton/>
+      </div>
     );
 
   }

@@ -3,7 +3,7 @@ import LoginForm from "component/form/login.jsx";
 
 class Login extends React.Component{
   render(){
-    return <LoginForm/>;
+    return <LoginForm onSubmit={v=>console.log(v)}/>;
   }
 }
 
