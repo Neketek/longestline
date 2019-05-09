@@ -8,7 +8,7 @@ COPY ./package*.json ./
 RUN sh docker/dev/install.sh
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
 
 VOLUME ["/app"]
 

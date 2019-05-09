@@ -41,3 +41,19 @@ services:
       - "27017:27017"
     volumes:
       - "./mongodb/data:/data"
+
+  proxy:
+    image: longestline:proxy
+    container_name: longestline-proxy
+    build:
+      dockerfile: docker/dev/.Dockerfile
+      context: ./proxy
+    depends_on:
+      - server
+      - app
+    links:
+      - server
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
