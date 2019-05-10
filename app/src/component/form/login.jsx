@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Form as Base} from 'react-generic-form';
 
+
 import Rule from 'common/component/form/rule.jsx';
 import Text from 'common/component/input/text.jsx';
-
 
 
 function SubmitButton(){
@@ -65,6 +65,11 @@ Login.updateDefaultProps({
   value:{
     name:"",
     password:""
+  },
+  rule:{
+    error:{
+      name:[]
+    }
   }
 });
 
