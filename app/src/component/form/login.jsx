@@ -1,59 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import {Form as Base} from 'react-generic-form';
-
+import {ContainerVertical} from 'common/component/form/layout.jsx'
 
 import Rule from 'common/component/form/rule.jsx';
-import Text from 'common/component/input/text.jsx';
-
-
-function SubmitButton(){
-
-  const {
-    props:{
-      onSubmit
-    },
-    state:{
-      error,
-      value
-    }
-  } = this;
-
-  if(this.constructor.isValid(error)){
-    return (
-      <button onClick={()=>onSubmit(value)}>Submit</button>
-    );
-  }
-
-  return null;
-}
+import Text from 'common/component/form/input/text.jsx';
+import SubmitButton from 'common/component/form/input/submit-button.jsx';
 
 class Login extends Base{
 
   constructor(props){
     super(props);
-    this.SubmitButton=props.onSubmit?SubmitButton.bind(this):()=>null;
+    this.SubmitButton = SubmitButton.bind(this);
   }
 
   form(){
     const {
       Field,
-      Errors,
       SubmitButton
     } = this;
 
     return (
-      <div>
+      <ContainerVertical>
         <label>Login</label>
         <Field>
-          <Text name="email"/>
+          <Text name="name"/>
         </Field>
         <label>Password</label>
         <Field>
           <Text name="password" type="password"/>
         </Field>
         <SubmitButton/>
-      </div>
+      </ContainerVertical>
     );
 
   }
@@ -68,8 +47,14 @@ Login.updateDefaultProps({
   },
   rule:{
     error:{
-      name:[]
-    }
+      name:[
+        Rule.list.empty().not().m(()=>`This field can't be empty`)
+      ],
+      password:[
+        Rule.list.empty().not().m(()=>`This field can't be empty`)
+      ]
+    },
+    warning:{}
   }
 });
 

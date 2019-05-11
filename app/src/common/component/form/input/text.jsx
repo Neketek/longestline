@@ -1,9 +1,15 @@
 import React from "react";
+import styled from 'styled-components';
 import {Input as Base} from "react-generic-form";
 import PropTypes from "prop-types";
 
+const Input = styled.input`
+  width: 100%;
+`
+
 
 class TextLine extends Base{
+
   onChange(e){
     super.onChange(e.target.value);
   }
@@ -26,7 +32,7 @@ class TextLine extends Base{
     }
 
     return (
-        <input {...props} {...required}></input>
+        <Input {...props} {...required}></Input>
     );
 
   }
