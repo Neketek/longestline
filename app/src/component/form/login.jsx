@@ -60,7 +60,7 @@ Login.updateDefaultProps({
 
 Login.updatePropTypes({
   value:PropTypes.shape({
-    name:PropTypes.string.isRequired,
+    email:PropTypes.string.isRequired,
     password:PropTypes.string.isRequired
   })
 });
