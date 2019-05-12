@@ -4,6 +4,8 @@ services:
   server:
     image: longestline:server
     container_name: longestline-server
+    environment:
+      - JWT_SECRET_KEY=xxxx-xxxx-xxxx-xxxx
     build:
       dockerfile: docker/dev/.Dockerfile
       context: ./server

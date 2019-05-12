@@ -52,9 +52,9 @@ class SignUp extends Base{
 
     return (
       <ContainerVertical>
-        <label>Login</label>
+        <label>Email</label>
         <Field>
-          <Text name="name"/>
+          <Text name="email"/>
         </Field>
         <label>Password</label>
         <Field>
@@ -72,13 +72,13 @@ class SignUp extends Base{
 SignUp.updateDefaultProps({
   name:"login",
   value:{
-    name:"",
+    email:"",
     password:"",
     passwordConfirmation:""
   },
   rule:{
     error:{
-      name:[
+      email:[
         Rule.list.empty().not().m(()=>`This field can't be empty`)
       ],
       password:[

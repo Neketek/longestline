@@ -8,17 +8,18 @@ const send= async (v)=>{
     method:'POST',
     mode:'cors',
     headers:{
-      'Content-Type':'application-json'
+      'Content-Type':'application/json'
     },
     body:JSON.stringify(v)
   });
+  console.log(v);
   console.log(await resp.text());
 }
 
 
 class SignUp extends React.Component{
   render(){
-    return <SignUpFrom onSubmit={(v)=>send(v)}/>
+    return <SignUpFrom onSubmit={v=>send(v)}/>
   }
 }
 

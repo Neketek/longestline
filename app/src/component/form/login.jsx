@@ -23,9 +23,9 @@ class Login extends Base{
 
     return (
       <ContainerVertical>
-        <label>Login</label>
+        <label>Email</label>
         <Field>
-          <Text name="name"/>
+          <Text name="email"/>
         </Field>
         <label>Password</label>
         <Field>
@@ -42,12 +42,12 @@ class Login extends Base{
 Login.updateDefaultProps({
   name:"login",
   value:{
-    name:"",
+    email:"",
     password:""
   },
   rule:{
     error:{
-      name:[
+      email:[
         Rule.list.empty().not().m(()=>`This field can't be empty`)
       ],
       password:[
