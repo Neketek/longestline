@@ -1,2 +1,1 @@
-npm install --production=false
-mv node_modules /node_modules
+pip install -r docker/dev/requirements.txt

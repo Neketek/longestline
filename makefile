@@ -21,3 +21,8 @@ dev-run-app:
 .PHONY: dev-run-server
 dev-run-server:
 	docker-compose -f dev.docker-compose.yml run --rm --no-deps --entrypoint /bin/sh server
+
+
+.PHONY: ssh-dev-server
+ssh-dev-server:
+	docker exec -it longestline-server /bin/sh

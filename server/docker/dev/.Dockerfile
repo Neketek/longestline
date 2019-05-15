@@ -1,16 +1,13 @@
-FROM node:8.16.0-alpine
+FROM python:3.7-alpine
 
 WORKDIR server
 
-COPY ./docker/dev/*.sh ./docker/dev/
-COPY ./package*.json ./
+COPY docker/dev/ docker/dev
 
 RUN sh docker/dev/install.sh
-COPY . .
 
-EXPOSE 8080
-
-VOLUME ["/server"]
+COPY ./ ./
 
 ENTRYPOINT ["/bin/sh"]
+
 CMD ["docker/dev/cmd.sh"]

@@ -1,3 +1,2 @@
-rm -rf node_modules
-ln -s /node_modules /server/node_modules
-npm run dev-start
+chmod -R 777 .
+python src/manage.py runserver 0:8080
