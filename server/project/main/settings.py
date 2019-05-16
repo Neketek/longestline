@@ -32,13 +32,14 @@ APPEND_SLASH = True
 # Application definition
 
 INSTALLED_APPS = [
-    "api_site",
-    "api_game",
+    'api_site',
+    'api_game',
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.messages',
-    "rest_framework",
+    'rest_framework',
+    'rest_framework_jwt',
     # 'django.contrib.admin',
     # 'django.contrib.staticfiles',
 ]
@@ -61,6 +62,13 @@ WSGI_APPLICATION = 'main.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
