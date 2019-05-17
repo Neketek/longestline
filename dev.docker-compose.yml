@@ -5,7 +5,7 @@ services:
     image: longestline:server
     container_name: longestline-server
     environment:
-      - JWT_SECRET_KEY=xxxx-xxxx-xxxx-xxxx
+      - SECRET_KEY=xxxx-xxxx-xxxx-xxxx
       - DEBUG=True
     build:
       dockerfile: docker/dev/.Dockerfile

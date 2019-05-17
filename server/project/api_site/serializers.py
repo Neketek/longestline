@@ -3,15 +3,16 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('url', 'username', 'email', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, valid_data):
         user = User(
-            email=valid_data['email'],
-            username=valid_data['username']
+            username=valid_data['username'],
+            email=valid_data.get('email', '')
         )
         user.set_password(valid_data['password'])
         user.save()
@@ -21,4 +22,4 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields = ('name')
+        fields = ('url', 'name')

@@ -1,0 +1,6 @@
+#!/bin/sh
+(
+  cd /server/project;
+  echo "WORKDIR:$(pwd)";
+  python manage.py "$@";
+)
