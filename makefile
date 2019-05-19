@@ -56,3 +56,7 @@ dev-run-server-full: dev-build
 .PHONY: ssh-dev-server
 ssh-dev-server:
 	docker exec -it longestline-server /bin/sh
+
+.PHONY: ssh-dev-mongodb
+ssh-dev-mongodb:
+	docker exec -it longestline-mongodb /bin/sh
