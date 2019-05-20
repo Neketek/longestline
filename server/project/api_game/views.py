@@ -26,3 +26,35 @@ class MatchViewSet(
         data['required_players'] = 2
         data['max_players'] = 2
         serializer.save(**data)
+
+
+class TurnViewSet(
+    viewsets.GenericViewSet,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.ListModelMixin,
+):
+
+    serializer_class = TurnSerializer
+
+    def get_queryset(self):
+        return (
+            Turn.objects.all().filter(match_id=self.kwargs.get('match_pk'))
+        )
+
+
+class PlayerViewSet(
+    viewsets.GenericViewSet,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.ListModelMixin,
+):
+
+    serializer_class = PlayerSerializer
+
+    def get_queryset(self):
+        return (
+            Player.objects.all().filter(match_id=self.kwargs.get('match_pk'))
+        )
