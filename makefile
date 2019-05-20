@@ -1,13 +1,16 @@
 .PHONY: all
 all:
 
+
 .PHONY: dev-run
 dev-run: dev-stop dev-build
 	docker-compose -f dev.docker-compose.yml up
 
+
 .PHONY: dev-build
 dev-build:
 	docker-compose -f dev.docker-compose.yml build
+
 
 .PHONY: dev-stop
 dev-stop:
@@ -47,6 +50,7 @@ dev-run-database:
 	run --rm --no-deps \
 	--entrypoint /bin/sh \
 	database
+
 
 .PHONY: ssh-dev-server
 ssh-dev-server:
