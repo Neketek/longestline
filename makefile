@@ -20,43 +20,39 @@ dev-run-app:
 
 
 .PHONY: dev-run-server
-dev-run-server: dev-build
+dev-run-server:
+	docker-compose -f dev.docker-compose.yml build server;
 	docker-compose -f dev.docker-compose.yml \
 	run --rm --no-deps \
 	--service-ports \
 	--entrypoint /bin/sh server
 
 
-.PHONY: dev-clear-mongodb-data
-.ONESHELL:
-dev-clear-mongodb-data:
-	cd mongodb/data;
-	mv db/.gitignore .gitignore-data ;
-	mv logs/.gitignore .gitignore-logs ;
-
-	cd db && rm -rf * ;
-	cd .. ;
-
-	cd logs && rm -rf * ;
-	cd .. ;
-
-	mv .gitignore-logs logs/.gitignore ;
-	mv .gitignore-data db/.gitignore ;
-
-
 .PHONY: dev-run-server-full
 .ONESHELL:
-dev-run-server-full: dev-build
+dev-run-server-full:
+	docker-compose -f dev.docker-compose.yml build server database redis;
 	docker-compose -f dev.docker-compose.yml \
 	run --rm \
 	--service-ports \
 	--entrypoint /bin/sh server
-	docker container stop longestline-mongodb
+	docker container stop longestline-database longestline-redis
+
+
+.PHONY: dev-run-database
+.ONESHELL:
+dev-run-database:
+	docker-compose -f dev.docker-compose.yml build database ;
+	docker-compose -f dev.docker-compose.yml \
+	run --rm --no-deps \
+	--entrypoint /bin/sh \
+	database
 
 .PHONY: ssh-dev-server
 ssh-dev-server:
 	docker exec -it longestline-server /bin/sh
 
-.PHONY: ssh-dev-mongodb
-ssh-dev-mongodb:
-	docker exec -it longestline-mongodb /bin/sh
+
+.PHONY: ssh-dev-database
+ssh-dev-database:
+	docker exec -it longestline-database /bin/sh

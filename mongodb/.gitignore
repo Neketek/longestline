@@ -1,4 +1,0 @@
-data/logs/*
-data/db/*
-!data/db/readme
-!data/logs/readme

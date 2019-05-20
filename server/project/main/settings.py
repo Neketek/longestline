@@ -94,9 +94,11 @@ JWT_AUTH = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'longestline',
-        'HOST': 'mongodb',
+        'HOST': 'database',
+        'PASSWORD': 'password',
+        'USER': 'longestline_server',
     }
 }
 

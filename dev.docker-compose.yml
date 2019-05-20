@@ -1,6 +1,7 @@
 version: "3.2"
 
 services:
+
   server:
     image: longestline:server
     container_name: longestline-server
@@ -15,9 +16,11 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - mongodb
+      - database
+      - redis
     links:
-      - mongodb
+      - database
+      - redis
     stdin_open: true
     tty: true
 
@@ -34,16 +37,18 @@ services:
     stdin_open: true
     tty: true
 
-  mongodb:
-    image: longestline:mongodb
-    container_name: longestline-mongodb
+  database:
+    container_name: longestline-database
+    image: longestline:database
     build:
       dockerfile: docker/dev/.Dockerfile
-      context: ./mongodb
-    ports:
-      - "27017:27017"
+      context: ./database
+    expose:
+      - "5432"
+    environment:
+      PGDATA: /data
     volumes:
-      - "./mongodb/data:/data"
+      - database:/data
 
   proxy:
     image: longestline:proxy
@@ -60,3 +65,18 @@ services:
     ports:
       - "80:80"
       - "443:443"
+
+  redis:
+    container_name: longestline-redis
+    image: longestline:redis
+    build:
+      dockerfile: docker/dev/.Dockerfile
+      context: ./redis
+    expose:
+      - "6379"
+    volumes:
+      - redis:/data
+
+volumes:
+  database:
+  redis:
